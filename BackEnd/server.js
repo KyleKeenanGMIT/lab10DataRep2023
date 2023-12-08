@@ -4,6 +4,13 @@ const port = 4000 //port set to 4000
 
 
 const cors = require('cors');//cors
+
+//import from moodle. index.html is accessed from the build folder now.
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
+
+
 app.use(cors());
 app.use(function(req, res, next) {
 res.header("Access-Control-Allow-Origin", "*");
@@ -76,6 +83,11 @@ app.get('/api/books', async (req, res) =>{
     book = await bookModel.findById({_id:req.params.id})
     res.send(book);//can query the db to find a certain book by ID.
     })
+
+
+    app.get('*', (req,res) =>{
+      res.sendFile(path.join(__dirname+'/../build/index.html'));
+      });//import from moodle.
 
  
 
