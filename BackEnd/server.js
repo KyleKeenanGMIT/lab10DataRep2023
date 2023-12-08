@@ -60,9 +60,7 @@ bookModel.create({
 
 })
 
-app.get('/', (req, res) => {//Server sits and listens for request - / call back function.
-  res.send('Hello World!')//hello world response.
-})//test1
+
 
 //server listens for HTTP put method
 app.put('/api/book/:id', async(req, res) =>{
